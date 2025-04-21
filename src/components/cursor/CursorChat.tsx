@@ -1,7 +1,12 @@
+import CursorSVG from "@/../public/assets/CursorSVG";
 import { CursorChatProps, CursorMode } from "@/types/type";
-import CursorSVG from "@/public/assets/CursorSVG";
 
-const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: CursorChatProps) => {
+const CursorChat = ({
+  cursor,
+  cursorState,
+  setCursorState,
+  updateMyPresence,
+}: CursorChatProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateMyPresence({ message: e.target.value });
     setCursorState({
@@ -15,7 +20,7 @@ const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: C
     if (e.key === "Enter") {
       setCursorState({
         mode: CursorMode.Chat,
-        // @ts-ignore
+        // @ts-expect-error cursorState.message might be undefined in Chat mode
         previousMessage: cursorState.message,
         message: "",
       });
@@ -52,7 +57,9 @@ const CursorChat = ({ cursor, cursorState, setCursorState, updateMyPresence }: C
              * We're doing this because when user press enter, we want to
              * show the previous message at top and the input at bottom
              */}
-            {cursorState.previousMessage && <div>{cursorState.previousMessage}</div>}
+            {cursorState.previousMessage && (
+              <div>{cursorState.previousMessage}</div>
+            )}
             <input
               className="z-10 w-60 border-none	bg-transparent text-white placeholder-blue-300 outline-none"
               autoFocus={true}
