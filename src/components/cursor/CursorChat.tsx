@@ -45,7 +45,7 @@ const CursorChat = ({
           <CursorSVG color="#000" />
 
           <div
-            className="absolute left-2 top-5 bg-blue-500 px-4 py-2 text-sm leading-relaxed text-white"
+            className="absolute left-2 top-5 bg-blue-600 px-4 py-2 text-sm leading-relaxed text-white"
             onKeyUp={(e) => e.stopPropagation()}
             style={{
               borderRadius: 20,
